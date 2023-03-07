@@ -12,10 +12,13 @@
 
 import os
 import sys
+
 import sphinx_rtd_theme
 
 module_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../")
 sys.path.insert(0, module_path)
+
+import pcdsdaq  # noqa: E402
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -58,8 +61,6 @@ project = "pcdsdaq"
 # built documents.
 #
 # The short X.Y version.
-import pcdsdaq
-
 version = str(pcdsdaq.__version__)
 # The full version, including alpha/beta/rc tags.
 release = str(pcdsdaq.__version__)
