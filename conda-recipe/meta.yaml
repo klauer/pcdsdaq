@@ -14,26 +14,23 @@ build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
 
-
-
 requirements:
   build:
-  - python >=3.6
+  - python >=3.9
   - setuptools_scm
   - pip
   run:
-  - python >=3.6
+  - python >=3.9
   - ophyd >=1.5.0
   - bluesky >=1.6.0
   - toolz
 
-
-
 test:
   imports:
   - pcdsdaq
-
-
+  requires:
+  - pytest
+  - pytest-timeout
 
 about:
   home: https://github.com/pcdshub/pcdsdaq
