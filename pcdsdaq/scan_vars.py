@@ -75,7 +75,7 @@ class ScanVars(Device, CallbackBase):
             self._RE.unsubscribe(self._cbid)
             self._cbid = None
 
-    def start(self, doc: Dict[str, Any]):
+    def start(self, doc: dict[str, Any]):
         """
         Initialize the scan variables at the start of a run.
 
@@ -93,7 +93,7 @@ class ScanVars(Device, CallbackBase):
             try:
                 motors = doc['motors']
                 for i, name in enumerate(motors[:3]):
-                    sig = getattr(self, 'var{}'.format(i))
+                    sig = getattr(self, f'var{i}')
                     sig.put(name)
             except KeyError:
                 logger.debug('Skip var names, no "motors" in start doc')
@@ -186,7 +186,7 @@ class ScanVars(Device, CallbackBase):
         sig_max.put(max(start, stop))
         sig_min.put(min(start, stop))
 
-    def setup_inner_product(self, plan_pattern_args: Dict[str, Any]) -> None:
+    def setup_inner_product(self, plan_pattern_args: dict[str, Any]) -> None:
         """
         Handle max, min, number of steps for inner_product scans.
 
@@ -202,7 +202,7 @@ class ScanVars(Device, CallbackBase):
         num = plan_pattern_args['num']
         self.n_steps.put(num)
 
-    def setup_outer_product(self, plan_pattern_args: Dict[str, Any]) -> None:
+    def setup_outer_product(self, plan_pattern_args: dict[str, Any]) -> None:
         """
         Handle max, min, number of steps for outer_product scans.
 
@@ -236,7 +236,7 @@ class ScanVars(Device, CallbackBase):
 
     def setup_inner_list_product(
         self,
-        plan_pattern_args: Dict[str, Any],
+        plan_pattern_args: dict[str, Any],
     ) -> None:
         """
         Handle max, min, number of steps for inner_list_product scans.
@@ -255,7 +255,7 @@ class ScanVars(Device, CallbackBase):
 
     def setup_outer_list_product(
         self,
-        plan_pattern_args: Dict[str, Any],
+        plan_pattern_args: dict[str, Any],
     ) -> None:
         """
         Handle max, min, number of steps for outer_list_product scans.
